@@ -1,14 +1,14 @@
 .body{
-  margin:0;
-  padding:0;
+	margin:0;
+	padding:0;
 }
 .container{
-  display:flex;
-  align-items: center;
+	display:flex;
+	align-items: center;
   justify-content: center;
 }
 .container:nth-child(n+4){
-  margin-top:1em;
+	margin-top:1em;
 }
 .profile-header{
   position:fixed;
@@ -55,29 +55,29 @@
   padding:.5em;
 }
 header{
-  display:flex;
-  justify-content: space-between;
-  padding:1em;
-  box-sizing: border-box;
-  font-family: "Arial Black", Gadget, sans-serif;
-  background-color: rgba(0,0,0,.6);
-  text-align:center;
-  position:fixed;
+	display:flex;
+	justify-content: space-between;
+	padding:1em;
+	box-sizing: border-box;
+	font-family: "Arial Black", Gadget, sans-serif;
+	background-color: rgba(0,0,0,.6);
+	text-align:center;
+	position:fixed;
   top:0;
-  width:100%;
-  z-index: 99;
-  color:white;
+	width:100%;
+	z-index: 99;
+	color:white;
 }
 header a{
-  text-decoration: none;
-  color:white;
+	text-decoration: none;
+	color:white;
 }
 .post-form{
-  margin-top:5.5em;
-  position:relative;
+	margin-top:5.5em;
+	position:relative;
 }
 .text-box{
-  width: 400px;
+	width: 400px;
     height: 1em;
     padding: 1em 2em;
     border-radius: 4px;
@@ -86,10 +86,10 @@ header a{
     transition: .2s;
 }
 .text-box:focus{
-  height: 5em;
+	height: 5em;
 }
 .text-box:focus ~ .btn-send{
-  bottom: .7em;
+	bottom: .7em;
 }
 .btn-send {
   background: rgb(50,205,50);
@@ -160,32 +160,32 @@ header a{
   cursor: pointer;
 }
 .timeline-content{
-  display:block;
-  text-align: center;
+	display:block;
+	text-align: center;
 }
 
 .post li{
-  width: 400px;
-  padding: 1em 1.7em;
-  border: 1px solid silver;
-  border-top: 0px;
-  margin: 0 auto;
-  text-align: left;
-  position:relative;
+	width: 400px;
+	padding: 1em 1.7em;
+	border: 1px solid silver;
+	border-top: 0px;
+	margin: 0 auto;
+	text-align: left;
+	position:relative;
 } 
 .post li:first-child{
     border-top: 1px solid silver;
 }
 .post li:hover{
-  background-color: #f4f4f4;
+	background-color: #f4f4f4;
 }
 .post-header{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 5px;
 }
 .post-header p{
-  font-family:"Courier New", Courier, monospace;
+	font-family:"Courier New", Courier, monospace;
 }
 .post-header a{
   color:black;

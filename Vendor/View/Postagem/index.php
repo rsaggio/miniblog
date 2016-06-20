@@ -30,7 +30,7 @@ use Vendor\Model\Login;
 			<button class="altera" type="submit">alterar</button>
 		</form>
 		<p>
-			posts por semana: <?= $postsPorSemana ?>
+			posts por semana: <?= $postsPorSemana?>
 		</p>
 
 	</section>

@@ -3,13 +3,10 @@ namespace Vendor\Factory;
 
 class ConnectionFactory{
 	public static function getConnection(){
+		
+		$pdo = new \PDO('mysql:host=localhost;dbname=miniblog','root','');
+		$pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-		$con = mysql_connect('127.0.0.1', 'root', '');
-		mysql_select_db('miniblog');
-		if (!$con) {
-    		die('Não foi possível conectar: ' . mysql_error());
-		}
-
-		return $con;
+		return $pdo;
 	}
 }

@@ -13,62 +13,85 @@ class UsuarioDAO{
 
 	public function adiciona(Usuario $usuario){		
 		$query = "INSERT INTO Usuario (nome,senha,email,bio,dataDeIngresso) VALUES 
-		('".mysql_real_escape_string($usuario->getNome())."',
-		'".mysql_real_escape_string(md5($usuario->getSenha()))."',
-		'".mysql_real_escape_string($usuario->getEmail())."',
-		'".mysql_real_escape_string($usuario->getBio())."',
-		'".mysql_real_escape_string(date("Y-m-d"))."')";
-		
-		return mysql_query($query);
+		(:nome,:senha,:email,:bio,:dataDeIngresso)";
+
+		$stm = $this->con->prepare($query);
+		$stm->bindValue(":nome",$usuario->getNome());
+		$stm->bindValue(":senha",md5($usuario->getSenha()));
+		$stm->bindValue(":email",$usuario->getEmail());
+		$stm->bindValue(":bio",$usuario->getBio());
+		$stm->bindValue(":dataDeIngresso",date("Y-m-d"));
+
+		return $stm->execute();
 	}
 
 	public function alteraNome(Usuario $usuario){
-		$query = "UPDATE Usuario SET 
-		Nome='".mysql_real_escape_string($usuario->getNome())."' 
-		WHERE id='".mysql_real_escape_string($usuario->getId())."'";
+		$query = "UPDATE Usuario SET Nome=:nome WHERE id=:id";
 		
-		mysql_query($query);
+		$stm = $this->con->prepare($query);
+		$stm->bindValue(":nome",$usuario->getNome());
+		$stm->bindValue(":id",$usuario->getId());
+
+		return $stm->execute();
 	}
 
 	public function alteraBio(Usuario $usuario){
-		$query = "UPDATE Usuario SET 
-		Bio='".mysql_real_escape_string($usuario->getBio())."' 
-		WHERE id='".mysql_real_escape_string($usuario->getId())."'";
-		
-		mysql_query($query);
+		$query = "UPDATE Usuario SET Bio=:bio WHERE id=:id";
+
+		$stm = $this->con->prepare($query);
+		$stm->bindValue(":bio",$usuario->getBio());
+		$stm->bindValue(":id",$usuario->getId());
+
+		return $stm->execute();
 	}
 
 	public function buscaPorId($id){
-		$query = "SELECT * FROM Usuario WHERE id = '".
-					mysql_real_escape_string($id)."'";
-		$result = mysql_query($query);
-		$usuario = mysql_fetch_object($result,'Vendor\Model\Usuario');
+		$query = "SELECT * FROM Usuario WHERE id = :id";
+		
+		$stm = $this->con->prepare($query);
+
+		$stm->bindValue(":id",$id);
+
+		$stm->execute();
+		$usuario = $stm->fetchObject('Vendor\Model\Usuario');
+
 		return $usuario;
 	}
 
 	public function buscaPorNome($nome){
-		$query = "SELECT * FROM Usuario WHERE nome = '".
-					mysql_real_escape_string($nome)."'";
-		$result = mysql_query($query);
-		$usuario = mysql_fetch_object($result,'Vendor\Model\Usuario');
+		$query = "SELECT * FROM Usuario WHERE nome = :nome";
+
+		$stm = $this->con->prepare($query);
+		$stm->bindValue(":nome",$nome);
+
+		$stm->execute();
+		$usuario = $stm->fetchObject('Vendor\Model\Usuario');
+
 		return $usuario;
 	}
 
 	public function buscaPorEmail($email){
-		$query = "SELECT * FROM Usuario WHERE email = '".
-					mysql_real_escape_string($email)."'";
-		$result = mysql_query($query);
-		$usuario = mysql_fetch_object($result,'Vendor\Model\Usuario');
+		$query = "SELECT * FROM Usuario WHERE email = :email";
+		
+		$stm = $this->con->prepare($query);
+		$stm->bindValue(":email",$email);
+
+		$stm->execute();
+		$usuario = $stm->fetchObject('Vendor\Model\Usuario');
+
 		return $usuario;
 	}
 
 	public function login($email,$senha){
-		$query = "SELECT * FROM Usuario WHERE Email = '".
-					mysql_real_escape_string($email).
-					"' AND Senha = '".
-					mysql_real_escape_string(md5($senha))."'";
-		$result = mysql_query($query);
-		$usuario = mysql_fetch_object($result,'Vendor\Model\Usuario');
+		$query = "SELECT * FROM Usuario WHERE Email = :email AND Senha = :senha";
+		
+		$stm = $this->con->prepare($query);
+		$stm->bindValue(":email",$email);
+		$stm->bindValue(":senha",md5($senha));
+
+		$stm->execute();
+		$usuario = $stm->fetchObject('Vendor\Model\Usuario');
+
 		return $usuario;
 	}
 }

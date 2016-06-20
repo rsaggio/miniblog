@@ -1,13 +1,10 @@
 <?php
 namespace Vendor\Controller;
 
-use Vendor\DAO\UsuarioDAO;
-use Vendor\DAO\PostagemDAO;
+use Vendor\DAO\{UsuarioDAO,PostagemDAO};
 use Vendor\Factory\ConnectionFactory;
-use Vendor\Lib\View;
-use Vendor\Model\Login;
-use Vendor\Model\Usuario;
-use Vendor\Lib\UsuarioValidator;
+use Vendor\Lib\{View,UsuarioValidator};
+use Vendor\Model\{Login,Usuario};
 
 class LoginController{
 	private $usuarioDao;
@@ -23,13 +20,13 @@ class LoginController{
 	}
 
 	public function index(){
-		
 		$view = new View('index','Login');
 		return $view;
 	}
 
 	public function login(){
 		$usuario = $this->usuarioDao->login($_POST["email"], $_POST["senha"]);
+		
 		if($usuario == null) {
 			$view = new View('index','Login');
 			$view->itens('error','Usuário ou senha inválido.');
